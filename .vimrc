@@ -50,7 +50,7 @@ Plug 'tpope/vim-surround'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-let g:airline_theme='zenburn_igor'
+let g:airline_theme='igor'
 
 Plug 'tpope/vim-commentary'
 
