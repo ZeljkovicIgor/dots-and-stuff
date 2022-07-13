@@ -1,60 +1,67 @@
+"--------------------------------------------------------------------------
+" General settings
+"--------------------------------------------------------------------------
 set relativenumber
 set number
+set expandtab
+set splitright
+set splitbelow
+set list
+set listchars=tab:▸\ ,trail:·
+set scrolloff=16
+set hidden
+set updatetime=300 " because coc.nvim said so in their config
+set shortmess+=c
+set signcolumn=number
+set termguicolors
 
-" set leader and map leader and space to clear highlighted stuff
+"--------------------------------------------------------------------------
+" Key maps
+"--------------------------------------------------------------------------
+
+" Clear highlighted search
 let mapleader = ","
 nnoremap <leader><space> :noh<cr>
+
+" exit insert mode
+inoremap jj <ESC>
 
 " solves the python indentation in brackets problem
 let g:pyindent_open_paren = ''
 
+" Allow gf to open non-existent files
+map gf :edit <cfile><cr>
+
+"--------------------------------------------------------------------------
+" Plugins
+"--------------------------------------------------------------------------
+
 call plug#begin()
 
-Plug 'tpope/vim-sensible'
-Plug 'dracula/vim', { 'as': 'dracula' }
-
-Plug 'sheerun/vim-polyglot'
-
-" On-demand loading
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-nnoremap <C-b> :NERDTreeToggle<CR> 
-
-" Autocompletion...intellisense
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Adding a prettier command
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-" Use tab and shift tab to navigate the completion list
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" Use enter to confirm completion
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Select first completion item and confirm the completion when no item has been selected
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-
-" Plug 'scrooloose/syntastic'
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_javascript_checkers=['eslint']
-" let g:syntastic_html_checkers=['eslint', 'tidy']
-
-"	parentheses settings
-Plug 'jiangmiao/auto-pairs'
-
-Plug 'tpope/vim-surround'
-
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-let g:airline_theme='igor'
-
-Plug 'tpope/vim-commentary'
+source ~/.config/nvim/plugins/sensible.vim
+source ~/.config/nvim/plugins/dracula.vim
+source ~/.config/nvim/plugins/polyglot.vim
+source ~/.config/nvim/plugins/nerdtree.vim
+source ~/.config/nvim/plugins/coc.vim
+source ~/.config/nvim/plugins/surround.vim
+source ~/.config/nvim/plugins/autopairs.vim
+source ~/.config/nvim/plugins/airline.vim
+source ~/.config/nvim/plugins/airline-themes.vim
+source ~/.config/nvim/plugins/commentary.vim
+source ~/.config/nvim/plugins/snippets.vim
+source ~/.config/nvim/plugins/bracey.vim
+source ~/.config/nvim/plugins/fzf.vim
+source ~/.config/nvim/plugins/devicons.vim
+source ~/.config/nvim/plugins/sfartify.vim
+source ~/.config/nvim/plugins/fugitive.vim
+source ~/.config/nvim/plugins/repeat.vim
+source ~/.config/nvim/plugins/intelephense-coc.vim
 
 call plug#end()
 
+"--------------------------------------------------------------------------
+" Miscellaneous
+"--------------------------------------------------------------------------
+
 colorscheme dracula
-highlight Normal ctermbg=NONE ctermfg=NONE
+highlight Normal guibg=NONE guibg=NONE
