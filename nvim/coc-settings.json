@@ -1,16 +1,39 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "html", "javascript", "python", "php"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "markdown",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "python",
+    "php",
+    "blade"
+  ],
   "signature.preferShownAbove": false,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.errorSign": "✖",
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "•",
   "diagnostic.hintSign": "•",
-  "emmet.includeLanguages": {"blade": "html"},
+  "emmet.includeLanguages": {
+    "blade": "html"
+  },
   "prettier.disableLanguages": [
     "html"
   ],
   "prettier.tabWidth": 4,
+  "prettier.enable": false,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "javascript.inlayHints.parameterNames.enabled": "none",
+  "javascript.preferences.importModuleSpecifier": "shortest",
+  "javascript.preferences.importModuleSpecifierEnding": "auto",
+  "javascript.preferences.jsxAttributeCompletionStyle": "auto",
+  "javascript.preferences.quoteStyle": "auto",
+  "javascript.referencesCodeLens.enable": false,
+  "javascript.suggest.completeFunctionCalls": false,
+  "html.format.wrapLineLength": 0,
+  "snippets.textmateSnippetsRoots": ["~/.config/nvim/snippets"],
   "python.linting.pylintEnabled": true,
   "python.formatting.provider": "black"
 }
