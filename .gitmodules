@@ -1,0 +1,3 @@
+[submodule "auto-ls"]
+	path = auto-ls
+	url = https://github.com/ZeljkovicIgor/auto-ls
