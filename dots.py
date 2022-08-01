@@ -1,136 +1,98 @@
 #!/usr/bin/python
 """ Script for working with dot files """
 
-from os.path import exists
-from posixpath import expanduser
-from shutil import copy, which
-from filecmp import cmp
+import os
+from dotapp import all, rofi, zsh, vim, neovim, konsole
 
-data = {
-    "rofi": [
-        {
-            "path": expanduser("~/.config/rofi/"),
-            "repo_path": "./rofi/",
-            "name": "config.rasi",
-        },
-        {
-            "path": "/usr/share/rofi/themes/",
-            "repo_path": "./rofi/",
-            "name": "onedark-igor.rasi",
-        },
-    ],
+main_menu_options = {1: "Install", 2: "Update", 3: "Sync", 4: "Exit"}
+tool_menu_options = {
+    1: "All",
+    2: "rofi",
+    3: "zsh",
+    4: "vim",
+    5: "neovim",
+    6: "konsole",
+    7: "Back",
 }
 
+menu_functions = {}
 
-def is_tool(name):
-    """Check whether `name` is on PATH and marked as executable"""
+for tool_key, tool in tool_menu_options.items():
+    function_obj = None
+    tool_obj = all
 
-    return which(name) is not None
+    if tool == "rofi":
+        tool_obj = rofi
+    if tool == "zsh":
+        tool_obj = zsh
+    if tool == "vim":
+        tool_obj = vim
+    if tool == "neovim":
+        tool_obj = neovim
+    if tool == "konsole":
+        tool_obj = konsole
+
+    menu_functions[tool_key] = {}
+
+    for action_key, action in main_menu_options.items():
+        if action == main_menu_options[1]:
+            menu_functions[tool_key][action_key] = tool_obj.install
+        elif action == main_menu_options[2]:
+            menu_functions[tool_key][action_key] = tool_obj.update
+        elif action == main_menu_options[3]:
+            menu_functions[tool_key][action_key] = tool_obj.sync
 
 
-def copy_files(files, to_repo=True):
-    """Copy tool files from system to repo and reverse"""
+def print_menu(menu_options):
+    for key in menu_options.keys():
+        print(key, "--", menu_options[key])
 
-    for file in files:
-        if not exists(file["path"]):
-            print(f"{file['path']}{file['name']} does not exist.")
-            continue
 
-        if cmp(
-            file["path"] + file["name"],
-            file["repo_path"] + file["name"],
-            False,
-        ):
-            print(
-                f"{file['name']} files are same in repo and system. No need to copy them."
-            )
-            continue
+def submenu(action):
+    """docstring for submenu"""
 
+    submenu_showing = True
+    while submenu_showing:
+        print_menu(tool_menu_options)
+        tool = ""
         try:
-            print(f"Copying {file['name']}...")
+            tool = int(input("Enter your choice: "))
+        except:
+            print("Wrong input. Please enter a number")
 
-            src = file["path"] + file["name"]
-            dest = file["repo_path"]
+        os.system("clear")
 
-            if not to_repo:
-                src = file["repo_path"] + file["name"]
-                dest = file["path"]
-
-            file_destination = copy(src, dest)
-
-            print(f"{file['name']} copied from {src} to " + file_destination)
-        except Exception as e:
-            print("There was an error while copying rofi files: ")
-            raise e
+        if tool == 7:
+            print("Going back")
+            submenu_showing = False
+        elif tool not in tool_menu_options.keys():
+            print("Invalid option. Please enter a number between 1 and 4.")
+        else:
+            menu_functions[tool][action]()
 
 
-def sync_all():
-    """Go through all listed dots and sync from the system to this repo"""
+def menu():
+    """docstring for menu"""
 
-    for dot_name, dot_files in data.items():
+    menu_showing = True
+    while menu_showing:
+        print_menu(main_menu_options)
+        option = ""
+        try:
+            option = int(input("Enter your choice: "))
+        except:
+            print("Wrong input. Please enter a number...")
 
-        if not is_tool(dot_name):
-            print(f"{dot_name} is not installed.")
-            return
+        os.system("clear")
 
-        copy_files(dot_files)
-
-
-# rofi
-def sync_rofi():
-    """Copies all rofi files from the system to this repo"""
-
-    if not is_tool("rofi"):
-        print("Rofi is not installed.")
-        return
-
-    copy_files(data["rofi"])
-
-
-def sync_zsh():
-    """Copies all zsh files from the system to this repo"""
-    # proveri postoji li .zshrc
-    # sync_ohmyzsh()
-    # sync_theme()
-    # sync_p10k()
-    # kopiraj .zshrc
-    # izmeni potrebne reci u fajlu
-    pass
+        if option not in main_menu_options.keys():
+            print("Invalid option. Please enter a number between 1 and 4.")
+        elif option == 4:
+            print("Thanks message before exiting")
+            menu_showing = False
+            exit()
+        else:
+            submenu(option)
 
 
-def sync_ohmyzsh():
-    """Copies all ohmyzsh files from the system to this repo"""
-    pass
-
-
-def sync_theme():
-    """docstring for sync_p10k"""
-    pass
-
-
-def sync_p10k():
-    """docstring for sync_p10k"""
-    pass
-
-
-def add_aliases_to_zsh():
-    """docstring for add_aliases"""
-    pass
-
-
-def sync_konsole():
-    """docstring for sync_konsole"""
-    pass
-
-
-def sync_vim():
-    """docstring for sync_vim"""
-    pass
-
-
-def sync_neovim():
-    """docstring for sync_neovim"""
-    pass
-
-
-sync_all()
+menu()
