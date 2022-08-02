@@ -1,26 +1,32 @@
 """Module with methods for rofi"""
 from dotapp import data
+from dotapp.dot import Dot
 from dotapp.utils import copy_file, is_tool
 
 
-def sync():
-    """Copies all rofi files from the system to this repo"""
+class Rofi(Dot):
 
-    if not is_tool("rofi"):
-        print("Rofi is not installed.")
-        return
+    """Class that represents rofi dotfiles"""
 
-    if not data.rofi:
-        print("No information about rofi in database")
-        return
+    def __init__(self, name, dotfiles):
+        super(name, dotfiles).__init__()
 
-    for file in data.rofi:
-        copy_file(file)
+    def sync(self):
+        """Copies all rofi files from the system to this repo"""
 
+        if not is_tool("rofi"):
+            print("Rofi is not installed.")
+            return
 
-def update():
-    """docstring for update"""
+        if not data.rofi:
+            print("No information about rofi in database")
+            return
 
+        for file in data.rofi:
+            copy_file(file)
 
-def install():
-    """docstring for install"""
+    def update(self):
+        """docstring for update"""
+
+    def install(self):
+        """docstring for install"""

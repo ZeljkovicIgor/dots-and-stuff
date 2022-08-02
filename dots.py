@@ -1,8 +1,11 @@
 #!/usr/bin/python
-""" Script for working with dot files """
+""" Script for working with dot files this being the main file where the menu is made """
 
 import os
-from dotapp import all, rofi, zsh, vim, neovim, konsole
+from dotapp import all, data, rofi, zsh, vim, neovim, konsole
+from dotapp.dot import Dot
+from dotapp.dotfile import Dotfile
+from dotapp.rofi import Rofi
 
 main_menu_options = {1: "Install", 2: "Update", 3: "Sync", 4: "Exit"}
 tool_menu_options = {
@@ -16,6 +19,28 @@ tool_menu_options = {
 }
 
 menu_functions = {}
+dot_inventory = []
+
+for dotname, dotfiles in data.all.items():
+
+    dotfiles = map(
+        lambda file: Dotfile(file["name"], file["sys_path"], file["repo_path"]),
+        dotfiles,
+    )
+
+    if dotname == "rofi":
+        dot_inventory.append(Rofi(dotname, dotfiles))
+    elif dotname == "zsh":
+        dot_inventory.append(Zsh(dotname, dotfiles))
+    elif dotname == "vim":
+        dot_inventory.append(Vim(dotname, dotfiles))
+    elif dotname == "neovim":
+        dot_inventory.append(Neovim(dotname, dotfiles))
+    elif dotname == "konsole":
+        dot_inventory.append(Konsole(dotname, dotfiles))
+    else:
+        print("There is something wrong with the data")
+        break
 
 for tool_key, tool in tool_menu_options.items():
     function_obj = None
