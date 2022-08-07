@@ -2,122 +2,97 @@
 """ Script for working with dot files this being the main file where the menu is made """
 
 import os
-from dotapp import all, data, rofi, zsh, vim, neovim, konsole
-from dotapp.dot import Dot
+import sys
+from dotapp.data import DATA
 from dotapp.dotfile import Dotfile
-from dotapp.rofi import Rofi
 
-main_menu_options = {1: "Install", 2: "Update", 3: "Sync", 4: "Exit"}
-tool_menu_options = {
-    1: "All",
-    2: "rofi",
-    3: "zsh",
-    4: "vim",
-    5: "neovim",
-    6: "konsole",
-    7: "Back",
-}
+main_menu_options = ["Install", "Update", "Sync", "Exit"]
+tool_menu_options = []
 
-menu_functions = {}
-dot_inventory = []
+dotinventory = []
 
-for dotname, dotfiles in data.all.items():
 
-    dotfiles = map(
-        lambda file: Dotfile(file["name"], file["sys_path"], file["repo_path"]),
-        dotfiles,
-    )
+def initialize():
+    """initialize the app by mapping all data to objects and add them to menu options"""
+    for dot in DATA:
+        dot_class = dot["class"]
 
-    if dotname == "rofi":
-        dot_inventory.append(Rofi(dotname, dotfiles))
-    elif dotname == "zsh":
-        dot_inventory.append(Zsh(dotname, dotfiles))
-    elif dotname == "vim":
-        dot_inventory.append(Vim(dotname, dotfiles))
-    elif dotname == "neovim":
-        dot_inventory.append(Neovim(dotname, dotfiles))
-    elif dotname == "konsole":
-        dot_inventory.append(Konsole(dotname, dotfiles))
-    else:
-        print("There is something wrong with the data")
-        break
+        files = []
 
-for tool_key, tool in tool_menu_options.items():
-    function_obj = None
-    tool_obj = all
+        for file in dot["files"]:
+            files.append(Dotfile(file["name"], file["path"], file["repo_path"]))
 
-    if tool == "rofi":
-        tool_obj = rofi
-    if tool == "zsh":
-        tool_obj = zsh
-    if tool == "vim":
-        tool_obj = vim
-    if tool == "neovim":
-        tool_obj = neovim
-    if tool == "konsole":
-        tool_obj = konsole
+        dotinventory.append(dot_class(dot["name"], dot["text"], files))
 
-    menu_functions[tool_key] = {}
-
-    for action_key, action in main_menu_options.items():
-        if action == main_menu_options[1]:
-            menu_functions[tool_key][action_key] = tool_obj.install
-        elif action == main_menu_options[2]:
-            menu_functions[tool_key][action_key] = tool_obj.update
-        elif action == main_menu_options[3]:
-            menu_functions[tool_key][action_key] = tool_obj.sync
+    tool_menu_options.extend(["All"] + dotinventory + ["Back"])
 
 
 def print_menu(menu_options):
-    for key in menu_options.keys():
-        print(key, "--", menu_options[key])
+    """function to initialize main menu"""
+    for index, tool in enumerate(menu_options):
+        print(index, "--", tool if isinstance(tool, str) else tool.text)
 
 
-def submenu(action):
+def handle_action(action, tool):
+    """docstring for handleAction"""
+    if main_menu_options[action] == "Install":
+        tool_menu_options[tool].install()
+
+    if main_menu_options[action] == "Update":
+        tool_menu_options[tool].update()
+
+    if main_menu_options[action] == "Sync":
+        tool_menu_options[tool].sync()
+
+
+def show_submenu(action):
     """docstring for submenu"""
 
-    submenu_showing = True
-    while submenu_showing:
+    while True:
         print_menu(tool_menu_options)
-        tool = ""
         try:
             tool = int(input("Enter your choice: "))
-        except:
-            print("Wrong input. Please enter a number")
-
-        os.system("clear")
-
-        if tool == 7:
-            print("Going back")
-            submenu_showing = False
-        elif tool not in tool_menu_options.keys():
-            print("Invalid option. Please enter a number between 1 and 4.")
+        except ValueError:
+            print("Wrong input. Please enter a number\n")
+        except KeyboardInterrupt:
+            sys.exit()
         else:
-            menu_functions[tool][action]()
+            if tool == len(tool_menu_options) - 1:
+                print("Going back...\n")
+                break
+            if tool > len(tool_menu_options) - 1 or tool < 0:
+                os.system("clear")
+                print(
+                    f"Invalid option. Please enter a number between 0 and {len(tool_menu_options) - 1}.\n"
+                )
+
+            os.system("clear")
+            handle_action(action, tool)
 
 
-def menu():
+def show_menu():
     """docstring for menu"""
 
-    menu_showing = True
-    while menu_showing:
+    while True:
         print_menu(main_menu_options)
-        option = ""
         try:
             option = int(input("Enter your choice: "))
-        except:
-            print("Wrong input. Please enter a number...")
-
-        os.system("clear")
-
-        if option not in main_menu_options.keys():
-            print("Invalid option. Please enter a number between 1 and 4.")
-        elif option == 4:
-            print("Thanks message before exiting")
-            menu_showing = False
-            exit()
+        except ValueError:
+            os.system("clear")
+            print("Wrong input. Please enter a number...\n")
+        except KeyboardInterrupt:
+            sys.exit()
         else:
-            submenu(option)
+            if option > len(main_menu_options) - 1 or option < 0:
+                os.system("clear")
+                print("Invalid option. Please enter a number between 1 and 4.\n")
+            elif option == len(main_menu_options) - 1:
+                print("Exiting...\n")
+                sys.exit()
+            else:
+                os.system("clear")
+                show_submenu(option)
 
 
-menu()
+initialize()
+show_menu()

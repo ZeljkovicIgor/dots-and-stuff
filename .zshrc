@@ -9,7 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/archigor/.oh-my-zsh"
+export ZSH="/home/USERNAME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -92,19 +92,23 @@ pasteinit() {
 pastefinish() {
   zle -N self-insert $OLD_SELF_INSERT
 }
+
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
-### Fix slowness of pastes
 
+### Fix slowness of pastes
 zle_highlight+=(paste:none)
 
 source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source $ZSH/oh-my-zsh.sh
 
-# antigen bundle desyncr/auto-ls
-
 # User configuration
+
+export BAT_THEME="Dracula"
+
+# ls colors
+eval $(dircolors -b ~/.dir_colors)
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -130,10 +134,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Favorite folders shortcuts
-alias stuff="cd /mnt/Stuff"
-alias downloads="cd /mnt/Downloads"
-alias programming="cd '/mnt/Stuff/5_HOBBY/5_Programming'"
 
 
 
