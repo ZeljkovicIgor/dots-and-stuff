@@ -37,6 +37,13 @@ DATA = [
         "dependencies": [],
     },
     {
+        "name": "kitty",
+        "text": "Kitty",
+        "class": Dot,
+        "files": [{"path": expanduser("~/.config/kitty/"), "repo_path": "./kitty/"}],
+        "dependencies": [],
+    },
+    {
         "name": "rofi",
         "text": "Rofi",
         "class": Dot,

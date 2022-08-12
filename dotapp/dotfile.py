@@ -1,6 +1,7 @@
 import os
 from os.path import exists
 from shutil import copy
+import sys
 
 from dotapp.textcolors import print_success
 
@@ -30,6 +31,12 @@ class Dotfile:
 
         try:
             if not exists(self.get_repo_filename()):
+                if not exists(self.repopath):
+                    print(
+                        f"Repo directory {self.repopath} not found. Creating directory..."
+                    )
+                    os.makedirs(self.repopath)
+
                 print(f"Copying {self.name}...")
 
                 copy(self.get_sys_filename(), self.repopath)
