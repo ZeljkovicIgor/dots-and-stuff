@@ -1,7 +1,8 @@
 import os
-from filecmp import cmp
 from os.path import exists
 from shutil import copy
+
+from dotapp.textcolors import print_success
 
 
 class Dotfile:
@@ -20,69 +21,94 @@ class Dotfile:
         self.syspath = syspath
         self.repopath = repopath
 
-    def copy_file(self, to_repo=True):
-        """Copy tool files from system to repo and reverse"""
+    def copy_sync(self):
+        """docstring for copy_sync"""
+        if not exists(self.get_sys_filename()):
+            print(f"{self.get_sys_filename()} does not exist.")
 
-        if not exists(self.syspath):
-            print(f"{self.syspath}{self.name} does not exist.")
-
-            return None
-
-        if cmp(
-            self.syspath + self.name,
-            self.repopath + self.name,
-            False,
-        ):
-            print(
-                f"{self.name} files are same in repo and system. No need to copy them."
-            )
-
-            return None
+            return
 
         try:
-            print(f"Copying {self.name}...")
+            if not exists(self.get_repo_filename()):
+                print(f"Copying {self.name}...")
 
-            src = self.syspath + self.name
-            dest = self.repopath
+                copy(self.get_sys_filename(), self.repopath)
+            else:
+                if self.equal():
+                    print(
+                        f"{self.name} files are same in repo and system. No need to copy them."
+                    )
 
-            if not to_repo:
-                src = self.repopath + self.name
-                dest = self.syspath
+                    return
 
-            file_destination = copy(src, dest)
+                print(f"Copying {self.name}...")
+
+                copy(self.get_sys_filename(), self.get_repo_filename())
+
+                self.replace_username()
         except Exception as e:
             print("There was an error while copying rofi files: ")
             raise e
         else:
-            print(f"{self.name} copied from {src} to " + file_destination)
+            print_success(
+                f"{self.name} copied from {self.get_sys_filename()} to "
+                + self.get_repo_filename()
+            )
 
-            return src, file_destination
-
-    def prepare_for_repo(self):
-        """docstring for prepare_for_repo"""
-        filename = self.get_sys_filename()
-
-        with open(filename, "r", encoding="UTF-8") as file:
+    def replace_username(self):
+        """docstring for replace_username"""
+        with open(self.get_repo_filename(), "r") as file:
             lines = file.readlines()
-        with open(filename, "w", encoding="UTF-8") as file:
-            is_ignore = False
+        with open(self.get_repo_filename(), "w") as file:
             for line in lines:
-                if "!ignorestart!" in line:
-                    is_ignore = True
-                    continue
-                elif "!ignoreend!" in line:
-                    is_ignore = False
-                    continue
+                file.write(
+                    line.replace(os.getlogin(), "DOTS-USERNAME")
+                    if self.ignore_username(line) and os.getlogin() in line
+                    else line
+                )
 
-                if "!ignoreline!" in line or is_ignore:
-                    continue
+    def ignore_username(self, line):
+        """docstring for ignore_username"""
+        return "##dots-ignore-username##" in line
 
-                if os.getlogin() in line:
-                    file.write(line.replace(os.getlogin(), "USERNAME"))
-                    continue
+    def equal(self):
+        """docstring for equal"""
 
-                file.write(line)
+        def user_in_line(line):
+            """docstring for user_in_line"""
+            if self.ignore_username(line) and (
+                "USERNAME" in line or os.getlogin() in line
+            ):
+                return False
+            return True
+
+        try:
+            print("Comparing files in system and repo...")
+
+            with open(self.get_sys_filename(), "r") as filesys, open(
+                self.get_repo_filename(), "r"
+            ) as filerepo:
+                filesys_fil = list(filter(user_in_line, filesys))
+                filerepo_fil = list(filter(user_in_line, filerepo))
+
+                if len(filerepo_fil) != len(filesys_fil):
+                    print(
+                        f"{self.name} has {len(filesys_fil)} lines in system file and {len(filerepo_fil)} in repo file."
+                    )
+                    return False
+
+                for index, linesys in enumerate(filesys_fil):
+                    if linesys != filerepo_fil[index]:
+                        return False
+
+                return True
+        except Exception as e:
+            raise e
 
     def get_sys_filename(self):
         """get path to file in system"""
         return self.syspath + self.name
+
+    def get_repo_filename(self):
+        """get path to file in repo"""
+        return self.repopath + self.name

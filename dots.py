@@ -3,28 +3,17 @@
 
 import os
 import sys
-from dotapp.data import DATA
-from dotapp.dotfile import Dotfile
+from dotapp.dotsinventory import DotsInventory
 
 main_menu_options = ["Install", "Update", "Sync", "Exit"]
 tool_menu_options = []
 
-dotinventory = []
+dotinventory = DotsInventory()
 
 
 def initialize():
     """initialize the app by mapping all data to objects and add them to menu options"""
-    for dot in DATA:
-        dot_class = dot["class"]
-
-        files = []
-
-        for file in dot["files"]:
-            files.append(Dotfile(file["name"], file["path"], file["repo_path"]))
-
-        dotinventory.append(dot_class(dot["name"], dot["text"], files))
-
-    tool_menu_options.extend(["All"] + dotinventory + ["Back"])
+    tool_menu_options.extend([dotinventory] + dotinventory.get_all() + ["Back"])
 
 
 def print_menu(menu_options):
