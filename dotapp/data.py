@@ -33,6 +33,11 @@ DATA = [
                 "repo_path": "./nvim/plugins/",
             },
             {"path": expanduser("~/.config/nvim/"), "repo_path": "./nvim/"},
+            {
+                "name": ".nvimrc",
+                "path": expanduser("~/"),
+                "repo_path": "./",
+            },
         ],
         "dependencies": [],
     },
