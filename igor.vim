@@ -5,15 +5,16 @@
 
 
 " Color palette
-let s:deepbluesky = [24, '#005f87']
+let s:deepbluesky = [24, '#6272a4']
 let s:springgreen = [29, '#00875f']
-let s:orchid = [212, '#ff87d7']
+let s:orchid = [212, '#ff79c6']
 let s:lightsalmon = [216, '#ffaf87']
-let s:indianred = [203, '#ff5f5f']
-let s:white = [195, '#d7ffff']
-let s:black = [235, '#262626']
-let s:gold = [220, '#ffd700']
+let s:indianred = [203, '#ff5555']
+let s:white = [195, '#f8f8f2']
+let s:black = [235, '#161925']
+let s:gold = [220, '#ffb86c']
 let s:none = 'NONE'
+
 
 " Normal mode
 let s:N1 = [s:white[1], s:deepbluesky[1], s:white[0], s:deepbluesky[0]]
@@ -97,6 +98,14 @@ let g:airline#themes#igor#palette.inactive = {
     \ 'airline_y': s:IA,
     \ 'airline_z': s:IA}
 let g:airline#themes#igor#palette.inactive_modified = {}
+
+let g:airline#themes#igor#palette.tabline = {
+      \ 'airline_tab':      s:N1,
+      \ 'airline_tabsel':   s:N1,
+      \ 'airline_tabfill':  s:N2,
+      \ 'airline_tabmod':   s:NM1,
+      \ 'airline_tabmod_unsel':   s:NM2,
+      \ }
 
 " Warnings
 let g:airline#themes#igor#palette.normal.airline_warning = s:NM1

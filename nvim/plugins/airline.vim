@@ -1,8 +1,17 @@
 Plug 'vim-airline/vim-airline'
 
+function! AirlineInit()
+    let g:airline_section_z = airline#section#create(['%p%%%#__accent_bold#%{g:airline_symbols.linenr}%l%#__restore__#%#__accent_bold#/%L%{g:airline_symbols.maxlinenr}%#__restore__#%'])
+endfunction
+autocmd User AirlineAfterInit call AirlineInit()
 
 let g:airline_theme='igor'
 let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = '|'

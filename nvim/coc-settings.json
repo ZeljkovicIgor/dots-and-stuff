@@ -9,6 +9,7 @@
     "php",
     "blade"
   ],
+  "suggest.noselect": true,
   "signature.preferShownAbove": false,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.errorSign": "✖",

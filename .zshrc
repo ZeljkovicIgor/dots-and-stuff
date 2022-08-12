@@ -9,7 +9,8 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/USERNAME/.oh-my-zsh"
+export ZSH="/home/DOTS-USERNAME/.oh-my-zsh" ##dots-ignore-username##
+export EDITOR="nvim"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -80,8 +81,15 @@ plugins=(
 	zsh-syntax-highlighting
 	zsh-autosuggestions
 	auto-ls
-  fzf
+	fzf
+	keychain
+	zsh-tab-title
 )
+
+### zsh-tab-title settings
+ZSH_TAB_TITLE_ADDITIONAL_TERMS='kitty'
+ZSH_TAB_TITLE_ONLY_FOLDER=true
+ZSH_TAB_TITLE_DEFAULT_DISABLE_PREFIX=true
 
 ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
 pasteinit() {
@@ -92,23 +100,30 @@ pasteinit() {
 pastefinish() {
   zle -N self-insert $OLD_SELF_INSERT
 }
-
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
-
 ### Fix slowness of pastes
+
 zle_highlight+=(paste:none)
+
+### ssh keychain multiple keys setup
+zstyle :omz:plugins:keychain agents ssh
+zstyle :omz:plugins:keychain identities id_rsa id_personal
+zstyle :omz:plugins:keychain options --quiet --timeout 240 --confhost
+
+### automatically update oh my zsh
+zstyle ':omz:update' mode auto
 
 source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+source ~/.nvm/nvm.sh
 
 export BAT_THEME="Dracula"
+# antigen bundle desyncr/auto-ls
 
-# ls colors
-eval $(dircolors -b ~/.dir_colors)
+# User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -133,7 +148,9 @@ eval $(dircolors -b ~/.dir_colors)
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias kitterm="TERM=xterm-256color"
 
+# Favorite folders shortcuts
 
 
 
