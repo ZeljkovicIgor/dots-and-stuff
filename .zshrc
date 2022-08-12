@@ -86,6 +86,10 @@ plugins=(
 	zsh-tab-title
 )
 
+if [ -f ~/.ohmyzsh-plugins-settings ]; then
+	source ~/.ohmyzsh-plugins-settings
+fi
+
 ### zsh-tab-title settings
 ZSH_TAB_TITLE_ADDITIONAL_TERMS='kitty'
 ZSH_TAB_TITLE_ONLY_FOLDER=true
@@ -105,11 +109,6 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 ### Fix slowness of pastes
 
 zle_highlight+=(paste:none)
-
-### ssh keychain multiple keys setup
-zstyle :omz:plugins:keychain agents ssh
-zstyle :omz:plugins:keychain identities id_rsa id_personal
-zstyle :omz:plugins:keychain options --quiet --timeout 240 --confhost
 
 ### automatically update oh my zsh
 zstyle ':omz:update' mode auto
@@ -148,7 +147,7 @@ export BAT_THEME="Dracula"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias kitterm="TERM=xterm-256color"
+source ~/.zshrc-aliases
 
 # Favorite folders shortcuts
 

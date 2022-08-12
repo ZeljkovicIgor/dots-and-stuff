@@ -17,6 +17,18 @@ DATA = [
         "dependencies": [],
     },
     {
+        "text": "Coc.nvim",
+        "class": Dot,
+        "files": [
+            {
+                "path": expanduser("~/.config/coc/extensions/"),
+                "repo_path": "./",
+                "name": "package.json",
+            }
+        ],
+        "dependencies": [],
+    },
+    {
         "name": "vim",
         "text": "Vim",
         "class": Dot,
