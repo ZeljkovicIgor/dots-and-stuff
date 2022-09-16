@@ -60,6 +60,7 @@ source ~/.config/nvim/plugins/repeat.vim
 source ~/.config/nvim/plugins/intelephense-coc.vim
 source ~/.config/nvim/plugins/treesitter.vim
 source ~/.config/nvim/plugins/git-blamer.vim
+source ~/.config/nvim/plugins/notes.vim
 
 call plug#end()
 
