@@ -36,5 +36,6 @@
   "html.format.wrapLineLength": 0,
   "snippets.textmateSnippetsRoots": ["~/.config/nvim/snippets"],
   "python.linting.pylintEnabled": true,
-  "python.formatting.provider": "black"
+  "python.formatting.provider": "black",
+  "intelephense.licenceKey": "EducationalCode"
 }
