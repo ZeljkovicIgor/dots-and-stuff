@@ -24,6 +24,7 @@ configuration {
 * {
   black:      #000000;
   red:        #eb6e67;
+  purple:     #bd93f9;
   green:      #ffb86f;
   yellow:     #f8c456;
   blue:       #6eaafb;
