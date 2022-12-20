@@ -1,0 +1,13 @@
+{
+  "name": "nvim-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "blade"
+        ],
+        "path": "./blade.json"
+      }
+    ]
+  }
+}
