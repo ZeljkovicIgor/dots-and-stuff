@@ -69,31 +69,18 @@ config.emmet_ls.setup({
 config.tsserver.setup({
     capabilities = capabilities,
     on_attach = on_attach_with_format,
-    init_options = {
-        preferences = {
-            importModuleSpecifier = "shortest",
-            importModuleSpecifierEnding = "auto",
-            jsxAttributeCompletionStyle = "braces",
-            quoteStyle = "auto",
-            javascript = {
-                format = {
-                    baseIndentSize = 4,
-                    indentSize = 4,
-                    tabSize = 4,
-                    insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = true,
-                    insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = true,
-                },
-                inlayHints = {
-                    parameterNames = {
-                        enabled = "none",
-                    },
-                },
-                suggest = {
-                    completeFunctionCalls = false,
-                },
+    settings = {
+        javascript = {
+            format = {
+                insertSpaceAfterFunctionKeywordForAnonymousFunctions = true,
             },
         },
     },
+})
+
+config.jsonls.setup({
+    capabilities = capabilities,
+    on_attach = on_attach_with_format,
 })
 
 config.sumneko_lua.setup({
