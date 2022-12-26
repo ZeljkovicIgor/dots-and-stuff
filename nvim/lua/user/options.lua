@@ -10,8 +10,8 @@ opt.splitright = true
 opt.splitbelow = true
 opt.list = true
 opt.listchars = {
-    tab = '│·',
-    trail = '·'
+    tab = "│·",
+    trail = "·",
 }
 opt.scrolloff = 16
 opt.hidden = true
