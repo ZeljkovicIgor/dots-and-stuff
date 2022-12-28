@@ -15,6 +15,8 @@ keymap("n", "gf", "<cmd>edit <cfile><cr>", opts) -- open file on path (WIP)
 
 keymap("n", "<C-b>", "<cmd>NvimTreeFindFileToggle<cr>", opts) -- toggle NvimTree
 
+keymap("n", "<leader>gts", "<cmd>Gitsigns toggle_signs<cr>", opts) -- toggle git signs
+
 -- DIAGNOSTICS
 keymap("n", "[d", function()
     vim.diagnostic.goto_prev({ float = false })
