@@ -29,16 +29,15 @@ lualine.setup({
                 "filename",
                 path = 1,
             },
-            "branch",
         },
-        lualine_c = {
+        lualine_c = {},
+        lualine_x = {
             "diagnostics",
         },
-        lualine_x = {},
-        lualine_y = { "filetype", "progress" },
+        lualine_y = { "filetype", "progress", "location" },
         lualine_z = {
             {
-                "location",
+                "branch",
                 separator = { right = " " },
                 left_padding = 2,
             },
