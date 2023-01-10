@@ -74,6 +74,9 @@ config.tsserver.setup({
             format = {
                 insertSpaceAfterFunctionKeywordForAnonymousFunctions = true,
             },
+            suggest = {
+                completeFunctionCalls = true,
+            },
         },
         completions = {
             completeFunctionCalls = true,
