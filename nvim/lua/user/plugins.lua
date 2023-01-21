@@ -90,6 +90,7 @@ packer.startup(function(use)
         end,
         run = "<cmd>TSUpdate",
     })
+    use("nvim-treesitter/nvim-treesitter-textobjects")
 
     use("nvim-lua/plenary.nvim")
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })

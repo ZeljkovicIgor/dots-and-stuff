@@ -1,6 +1,29 @@
 local treesitter = require("nvim-treesitter.configs")
 
 treesitter.setup({
+    textobjects = {
+        select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+                ["af"] = { query = "@function.outer", desc = "Select outer part of a function" },
+                ["if"] = { query = "@function.inner", desc = "Select inner part of a function" },
+                ["ac"] = { query = "@class.outer", desc = "Select outer part of a class" },
+                ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+                ["aa"] = { query = "@attribute.outer", desc = "Select outer part of an attribute" },
+                ["ia"] = { query = "@attribute.inner", desc = "Select inner part of an attribute" },
+            },
+        },
+        swap = {
+            enable = true,
+            swap_next = {
+                ["<leader>a"] = "@parameter.inner",
+            },
+            swap_previous = {
+                ["<leader>A"] = "@parameter.inner",
+            },
+        },
+    },
     -- A list of parser names, or "all"
     ensure_installed = { "php", "lua", "html" },
 
