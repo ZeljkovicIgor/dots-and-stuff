@@ -29,6 +29,16 @@ end, opts) -- find all diagnostic data in whole workspace
 keymap("n", "<leader>fD", telescope_builtin.diagnostics, opts) -- find all diagnostic data in whole workspace
 keymap("n", "<leader>ss", telescope.extensions["session-lens"].search_session, opts) -- search sessions
 
+-- LSPSAGA
+keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
+keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+keymap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>")
+keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
+keymap("n", "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<CR>")
+keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
+keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+
 local M = {}
 
 -- LSP
@@ -36,19 +46,11 @@ local M = {}
 function M.lsp(client, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     keymap("n", "gD", vim.lsp.buf.declaration, bufopts)
-    keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", bufopts)
     keymap("n", "gd", telescope_builtin.lsp_definitions, bufopts)
-    keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
     keymap("n", "gi", telescope_builtin.lsp_implementations, bufopts)
     keymap("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
     keymap("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
-    keymap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { silent = true })
-    keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
-    keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>", { silent = true })
     keymap("n", "gr", telescope_builtin.lsp_references, bufopts)
-    keymap("n", "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
-    keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
-    keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
     keymap("n", "<space>f", function()
         vim.lsp.buf.format({ async = false })
     end, bufopts)

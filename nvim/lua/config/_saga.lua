@@ -1,5 +1,6 @@
 local saga = require("lspsaga")
 local colors = require("tokyonight.colors").default
+local icons = require("user.icons")
 
 saga.setup({
     diagnostic = {
@@ -12,6 +13,8 @@ saga.setup({
         enable = false,
     },
     ui = {
+        theme = "round",
+        code_action = icons.diagnostics.BoldHint,
         border = "rounded",
         colors = {
             normal_bg = colors.bg,
