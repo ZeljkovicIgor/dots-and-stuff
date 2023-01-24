@@ -18,7 +18,7 @@ null_ls.setup({
         formatting.phpcsfixer.with({
             extra_args = {
                 "--rules",
-                "@PSR12,-elseif",
+                "@PSR12,-elseif,array_indentation",
                 "--cache-file",
                 vim.fn.expand("~/.config/nvim/.php-cs-fixer.cache"),
             },
