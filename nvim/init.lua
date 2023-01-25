@@ -1,4 +1,4 @@
-pcall(require, "impatient")
+require("impatient")
 
 require("user.plugins")
 require("user.options")

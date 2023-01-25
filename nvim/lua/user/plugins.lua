@@ -200,4 +200,12 @@ packer.startup(function(use)
             require("config._saga")
         end,
     })
+
+    use("dstein64/vim-startuptime")
+    use({
+        "nathom/filetype.nvim",
+        config = function()
+            require("filetype").setup({})
+        end,
+    })
 end)
