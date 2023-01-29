@@ -11,6 +11,10 @@ local ensure_packer = function()
 end
 local packer_bootstrap = ensure_packer() -- true if packer was just installed
 
+if packer_bootstrap then
+    require("packer").sync()
+end
+
 vim.cmd([[
   augroup packer_user_config
     autocmd!
@@ -88,7 +92,10 @@ packer.startup(function(use)
         config = function()
             require("config.treesitter")
         end,
-        run = "<cmd>TSUpdate",
+        run = function()
+            local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+            ts_update()
+        end,
     })
     use("nvim-treesitter/nvim-treesitter-textobjects")
 
@@ -179,10 +186,6 @@ packer.startup(function(use)
         end,
     }) -- configure formatters & linters
     use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
-
-    if packer_bootstrap then
-        require("packer").sync()
-    end
 
     use("sheerun/vim-polyglot")
 

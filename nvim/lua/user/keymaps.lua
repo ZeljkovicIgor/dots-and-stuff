@@ -51,8 +51,9 @@ function M.lsp(client, bufnr)
     keymap("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
     keymap("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
     keymap("n", "gr", telescope_builtin.lsp_references, bufopts)
-    keymap("n", "<space>f", function()
+    keymap({ "n", "v" }, "<space>f", function()
         vim.lsp.buf.format({ async = false })
+        vim.cmd("noa w") -- save without running autocommands
     end, bufopts)
 end
 
@@ -75,11 +76,24 @@ function M.cmp(cmp, luasnip, has_words_before)
                 fallback()
             end
         end, { "i", "s" }),
-
         ["<C-p>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+        ["<C-j>"] = cmp.mapping(function(fallback)
+            if luasnip.jumpable() then
+                luasnip.jump(1)
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+        ["<C-k>"] = cmp.mapping(function(fallback)
+            if luasnip.jumpable() then
                 luasnip.jump(-1)
             else
                 fallback()
