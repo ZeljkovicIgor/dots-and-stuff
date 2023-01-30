@@ -63,7 +63,7 @@ config.html.setup({
 config.emmet_ls.setup({
     capabilities = capabilities,
     on_attach = on_attach,
-    filetypes = { "html", "blade", "css" },
+    filetypes = { "html", "blade", "css", "javascriptreact" },
 })
 
 config.tsserver.setup({

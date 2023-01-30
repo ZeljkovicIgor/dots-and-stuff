@@ -6,8 +6,8 @@ saga.setup({
     diagnostic = {
         show_code_action = false,
     },
-    rename = {
-        whole_project = false,
+    lightbulb = {
+        virtual_text = false,
     },
     symbol_in_winbar = {
         enable = false,

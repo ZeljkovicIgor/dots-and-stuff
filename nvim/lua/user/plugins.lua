@@ -202,6 +202,7 @@ packer.startup(function(use)
         config = function()
             require("config._saga")
         end,
+        requires = { { "nvim-tree/nvim-web-devicons" } },
     })
 
     use("dstein64/vim-startuptime")
