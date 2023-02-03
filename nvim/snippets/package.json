@@ -7,6 +7,12 @@
           "blade"
         ],
         "path": "./blade.json"
+      },
+      {
+        "language": [
+          "php"
+        ],
+        "path": "./php.json"
       }
     ]
   }
