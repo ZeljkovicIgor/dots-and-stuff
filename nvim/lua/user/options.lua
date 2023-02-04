@@ -24,3 +24,6 @@ opt.updatetime = 250
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
+
+-- polyglot settings
+vim.g["polyglot_disabled"] = { "autoindent" }

@@ -24,6 +24,15 @@ null_ls.setup({
             },
         }),
         formatting.blade_formatter,
+        formatting.prettier.with({
+            filetypes = { "html", "css" },
+            extra_args = {
+                "--tab-width",
+                4,
+                "--html-whitespace-sensitivity",
+                "ignore",
+            },
+        }),
     },
     -- configure format on save
     on_attach = function(current_client, bufnr)
