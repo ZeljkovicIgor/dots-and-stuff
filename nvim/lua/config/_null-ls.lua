@@ -23,7 +23,12 @@ null_ls.setup({
                 vim.fn.expand("~/.config/nvim/.php-cs-fixer.cache"),
             },
         }),
-        formatting.blade_formatter,
+        formatting.blade_formatter.with({
+            extra_args = {
+                "--wrap",
+                "200",
+            },
+        }),
     },
     -- configure format on save
     on_attach = function(current_client, bufnr)
