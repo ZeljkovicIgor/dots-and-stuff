@@ -53,9 +53,14 @@ config.intelephense.setup({
 
 config.html.setup({
     capabilities = capabilities,
-    on_attach = on_attach_with_format,
+    on_attach = on_attach,
     init_options = {
         provideFormatter = false,
+    },
+    settings = {
+        format = {
+            enabled = false,
+        },
     },
     filetypes = { "html", "blade" },
 })

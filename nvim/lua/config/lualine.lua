@@ -14,6 +14,7 @@ lualine.setup({
         disabled_filetypes = {
             "packer",
             "NvimTree",
+            "lspsagaoutline",
         },
     },
     sections = {

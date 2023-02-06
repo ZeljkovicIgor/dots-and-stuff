@@ -1,0 +1,7 @@
+{
+  "Arrow Anonymous Function": {
+    "prefix": "aaf",
+    "body": "fn (\\$${1:arg}) => \\$${2:arg}",
+    "description": "arrow anonymous function"
+  }
+}

@@ -39,6 +39,7 @@ packer.startup(function(use)
             require("config._tokyonight")
         end,
     })
+    use({ "catppuccin/nvim", as = "catppuccin" })
 
     -- NvimTree
     use({
