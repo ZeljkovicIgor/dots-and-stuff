@@ -33,12 +33,7 @@ packer.startup(function(use)
     use("neovim/nvim-lspconfig") -- Configurations for Nvim LSP
 
     -- Theme
-    use({
-        "folke/tokyonight.nvim",
-        config = function()
-            require("config._tokyonight")
-        end,
-    })
+    use({ "folke/tokyonight.nvim" })
     use({ "catppuccin/nvim", as = "catppuccin" })
 
     -- NvimTree
@@ -211,6 +206,13 @@ packer.startup(function(use)
         "nathom/filetype.nvim",
         config = function()
             require("filetype").setup({})
+        end,
+    })
+
+    use({
+        "JManch/sunset.nvim",
+        config = function()
+            require("config._theme")
         end,
     })
 end)

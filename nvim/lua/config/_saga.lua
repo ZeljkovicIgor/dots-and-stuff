@@ -5,6 +5,7 @@ local icons = require("user.icons")
 saga.setup({
     diagnostic = {
         show_code_action = false,
+        on_insert = false,
     },
     lightbulb = {
         virtual_text = false,

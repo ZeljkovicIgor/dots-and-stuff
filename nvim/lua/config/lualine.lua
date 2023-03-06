@@ -1,14 +1,7 @@
 local lualine = require("lualine")
-local tokyonight_lualine = require("lualine.themes.tokyonight")
-
-tokyonight_lualine.normal.c.bg = nil
-tokyonight_lualine.inactive.c.bg = nil
-tokyonight_lualine.inactive.a.bg = nil
-tokyonight_lualine.inactive.b.bg = nil
 
 lualine.setup({
     options = {
-        theme = tokyonight_lualine,
         component_separators = "",
         section_separators = { left = "", right = "" },
         disabled_filetypes = {

@@ -94,7 +94,7 @@ config.jsonls.setup({
     on_attach = on_attach_with_format,
 })
 
-config.sumneko_lua.setup({
+config.lua_ls.setup({
     capabilities = capabilities,
     on_attach = on_attach,
     settings = {
