@@ -5,3 +5,8 @@ dotapp/__pycache__
 
 .php-cs-fixer.cache
 packer_compiled.lua
+
+kitty.conf.bak
+current-theme.conf
+
+settings.lua

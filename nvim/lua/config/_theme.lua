@@ -1,101 +1,26 @@
-require("tokyonight").setup({
-    style = "storm",
-    lualine_bold = true,
-    styles = {
-        sidebars = "normal",
-        floats = "normal",
-    },
-    on_highlights = function(highlights, colors)
-        highlights.StatusLine = {
-            bg = colors.bg,
-            fg = colors.bg,
-        }
-    end,
-})
+local constants = require("user.constants")
+local tokyonight = require("config.themes.tokyonight")
+local catppuccin = require("config.themes.catppuccin")
 
-require("catppuccin").setup({
-    flavour = "latte",
-    integrations = {
-        gitsigns = true,
-        cmp = true,
-        illuminate = true,
-        lsp_saga = true,
-        mason = true,
-        nvimtree = true,
-        telescope = true,
-        treesitter = true,
-        fidget = true,
-    },
-})
+local ok, settings = pcall(require, "user.settings")
 
-require("sunset").setup({
-    latitude = 45.2396,
-    longitude = 19.8227,
-    night_callback = function()
-        vim.cmd.colorscheme("tokyonight-storm")
-        local lualine = require("lualine")
-        local theme_lualine = require("lualine.themes.tokyonight")
-
-        theme_lualine.normal.c.bg = nil
-        theme_lualine.inactive.c.bg = nil
-        theme_lualine.inactive.a.bg = nil
-        theme_lualine.inactive.b.bg = nil
-
-        lualine.setup({
-            options = {
-                theme = theme_lualine,
-            },
+if ok then
+    if settings.theme == constants.THEME.DYNAMIC then
+        require("sunset").setup({
+            latitude = settings.location.lat,
+            longitude = settings.location.long,
+            night_callback = function()
+                tokyonight.activate()
+            end,
+            day_callback = function()
+                catppuccin.activate()
+            end,
         })
-    end,
-    day_callback = function()
-        vim.cmd.colorscheme("catppuccin")
-        local lualine = require("lualine")
-        local theme_lualine = require("lualine.themes.catppuccin")
-
-        theme_lualine.normal.c.bg = nil
-        theme_lualine.inactive.c.bg = nil
-        theme_lualine.inactive.a.bg = nil
-        theme_lualine.inactive.b.bg = nil
-
-        lualine.setup({
-            options = {
-                theme = theme_lualine,
-            },
-        })
-    end,
-})
--- THEME = "tokyonight"
--- local theme = require(THEME)
---
--- if THEME == "tokyonight" then
---     theme.setup({
---         lualine_bold = true,
---         styles = {
---             sidebars = "normal",
---             floats = "normal",
---         },
---         on_highlights = function(highlights, colors)
---             highlights.StatusLine = {
---                 bg = colors.bg,
---                 fg = colors.bg,
---             }
---         end,
---     })
--- else
---     theme.setup({
---         flavour = "latte",
---         integrations = {
---             gitsigns = true,
---             cmp = true,
---             illuminate = true,
---             lsp_saga = true,
---             mason = true,
---             nvimtree = true,
---             telescope = true,
---             treesitter = true,
---             fidget = true,
---         },
---     })
--- end
-
--- vim.cmd.colorscheme(THEME)
+    elseif settings.theme == constants.THEME.DARK then
+        tokyonight.activate()
+    else
+        catppuccin.activate()
+    end
+else
+    tokyonight.activate()
+end
