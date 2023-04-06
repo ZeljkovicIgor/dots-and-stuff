@@ -4,6 +4,7 @@ telescope.setup({
     defaults = {
         prompt_prefix = " 🔍 ",
         file_ignore_patterns = { ".sql", "vendor" },
+        path_display = { "truncate" },
     },
     pickers = {
         buffers = {

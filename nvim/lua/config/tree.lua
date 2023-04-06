@@ -3,7 +3,10 @@ local tree = require("nvim-tree")
 tree.setup({
     hijack_cursor = true,
     filters = {
-        dotfiles = true,
+        exclude = {
+            ".env",
+            "settings.lua",
+        },
     },
     diagnostics = {
         enable = true,
