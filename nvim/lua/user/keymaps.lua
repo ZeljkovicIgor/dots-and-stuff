@@ -16,6 +16,7 @@ keymap("n", "gf", "<cmd>edit <cfile><cr>", opts) -- open file on path (WIP)
 keymap("n", "<C-b>", "<cmd>NvimTreeFindFileToggle<cr>", opts) -- toggle NvimTree
 
 keymap("n", "<leader>gs", "<cmd>Gitsigns toggle_signs<cr>", opts) -- toggle git signs
+keymap("n", "<leader>f", "<cmd>noa w<cr>", opts) -- save without formatting
 
 -- TELESCOPE
 keymap("n", "<leader>ff", telescope_builtin.find_files, opts) -- find files

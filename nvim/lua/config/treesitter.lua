@@ -58,3 +58,7 @@ treesitter.setup({
         -- disable = { "html" },
     },
 })
+
+vim.treesitter.set_query("javascript", "injections", "")
+vim.treesitter.set_query("typescript", "injections", "")
+vim.treesitter.set_query("lua", "injections", "")
