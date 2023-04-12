@@ -59,6 +59,6 @@ treesitter.setup({
     },
 })
 
-vim.treesitter.set_query("javascript", "injections", "")
-vim.treesitter.set_query("typescript", "injections", "")
-vim.treesitter.set_query("lua", "injections", "")
+vim.treesitter.query.set("javascript", "injections", "")
+vim.treesitter.query.set("typescript", "injections", "")
+vim.treesitter.query.set("lua", "injections", "")
