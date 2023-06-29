@@ -16,6 +16,8 @@ set signcolumn=number
 set termguicolors
 set nofixeol
 set tabstop=4
+set clipboard=unnamedplus
+set showcmd
 
 "--------------------------------------------------------------------------
 " Key maps

@@ -34,6 +34,7 @@ keymap("n", "<leader>ss", telescope.extensions["session-lens"].search_session, o
 keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
 keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
 keymap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>")
+keymap("n", "<leader>rng", "<cmd>Lspsaga rename ++project<CR>")
 keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
 keymap("n", "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<CR>")
 keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>")

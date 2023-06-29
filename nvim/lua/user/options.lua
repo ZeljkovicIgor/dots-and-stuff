@@ -1,5 +1,6 @@
 local opt = vim.opt
 
+opt.signcolumn = "yes:1"
 opt.relativenumber = true
 opt.number = true
 opt.linebreak = true
@@ -15,7 +16,6 @@ opt.listchars = {
 }
 opt.scrolloff = 16
 opt.hidden = true
-opt.signcolumn = "number"
 opt.fixeol = true
 opt.termguicolors = true
 opt.completeopt = { "menu", "menuone", "noselect" }
