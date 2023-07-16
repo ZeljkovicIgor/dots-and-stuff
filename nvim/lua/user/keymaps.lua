@@ -15,7 +15,6 @@ keymap("n", "gf", "<cmd>edit <cfile><cr>", opts) -- open file on path (WIP)
 
 keymap("n", "<C-b>", "<cmd>NvimTreeFindFileToggle<cr>", opts) -- toggle NvimTree
 
-keymap("n", "<leader>gs", "<cmd>Gitsigns toggle_signs<cr>", opts) -- toggle git signs
 keymap("n", "<leader>f", "<cmd>noa w<cr>", opts) -- save without formatting
 
 -- TELESCOPE
@@ -110,6 +109,34 @@ function M.cmp(cmp, luasnip, has_words_before)
             end
         end, { "i", "s" }),
     }
+end
+
+-- Gitsigns
+function M.gitsigns()
+    local gs = package.loaded.gitsigns
+
+    local nextHunk = function()
+        if vim.wo.diff then
+            return "]c"
+        end
+        vim.schedule(function()
+            gs.next_hunk()
+        end)
+        return "<Ignore>"
+    end
+
+    local previousHunk = function()
+        if vim.wo.diff then
+            return "[c"
+        end
+        vim.schedule(function()
+            gs.prev_hunk()
+        end)
+        return "<Ignore>"
+    end
+
+    keymap("n", "]c", nextHunk, { expr = true })
+    keymap("n", "[c", previousHunk, { expr = true })
 end
 
 return M
