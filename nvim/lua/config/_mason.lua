@@ -25,7 +25,7 @@ mason_lspconfig.setup({
         "html",
         "tsserver",
         "intelephense",
-        "emmet_ls",
+        "emmet_language_server",
         "lua_ls",
     },
     -- auto-install configured servers (with lspconfig)

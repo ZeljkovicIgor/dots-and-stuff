@@ -65,10 +65,22 @@ config.html.setup({
     filetypes = { "html", "blade" },
 })
 
-config.emmet_ls.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    filetypes = { "html", "blade", "css", "javascriptreact" },
+config.emmet_language_server.setup({
+    filetypes = {
+        "css",
+        "eruby",
+        "html",
+        "javascript",
+        "javascriptreact",
+        "less",
+        "sass",
+        "scss",
+        "svelte",
+        "pug",
+        "typescriptreact",
+        "vue",
+        "blade",
+    },
 })
 
 config.tsserver.setup({
