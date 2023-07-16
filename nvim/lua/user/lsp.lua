@@ -68,17 +68,10 @@ config.html.setup({
 config.emmet_language_server.setup({
     filetypes = {
         "css",
-        "eruby",
         "html",
         "javascript",
         "javascriptreact",
-        "less",
-        "sass",
-        "scss",
-        "svelte",
-        "pug",
         "typescriptreact",
-        "vue",
         "blade",
     },
 })
