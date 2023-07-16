@@ -1,4 +1,15 @@
-local startup = require('startup')
+local startup = require("startup")
+local icons = require("user.icons")
+
+local contentNames = {
+    sessions = icons.startup.sessions .. " Sessions",
+    findFiles = icons.startup.findFiles .. " Find Files",
+    findWord = icons.startup.findWord .. " Find Word",
+    recentFiles = icons.startup.recentFiles .. " Recent Files",
+    fileBrowser = icons.startup.fileBrowser .. " File Browser",
+    colorschemes = icons.startup.colorschemes .. " Colorschemes",
+    newFile = icons.startup.newFile .. " New File",
+}
 
 startup.setup({
     -- every line should be same width without escaped \
@@ -30,13 +41,13 @@ startup.setup({
         title = "Basic Commands",
         margin = 5,
         content = {
-            { "💻Sessions", "SearchSession", "<leader>ss" },
-            { " Find Files", "Telescope find_files", "<leader>ff" },
-            { " Find Word", "Telescope live_grep", "<leader>lg" },
-            { " Recent Files", "Telescope oldfiles", "<leader>of" },
-            { " File Browser", "Telescope file_browser", "<leader>fb" },
-            { " Colorschemes", "Telescope colorscheme", "<leader>cs" },
-            { " New File", "lua require'startup'.new_file()", "<leader>nf" },
+            { contentNames.sessions, "SearchSession", "<leader>ss" },
+            { contentNames.findFiles, "Telescope find_files", "<leader>ff" },
+            { contentNames.findWord, "Telescope live_grep", "<leader>lg" },
+            { contentNames.recentFiles, "Telescope oldfiles", "<leader>of" },
+            { contentNames.fileBrowser, "Telescope file_browser", "<leader>fb" },
+            { contentNames.colorschemes, "Telescope colorscheme", "<leader>cs" },
+            { contentNames.newFile, "lua require'startup'.new_file()", "<leader>nf" },
         },
         highlight = "String",
         default_color = "",
