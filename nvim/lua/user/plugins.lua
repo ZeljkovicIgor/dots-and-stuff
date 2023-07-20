@@ -187,6 +187,7 @@ packer.startup(function(use)
 
     use({
         "j-hui/fidget.nvim",
+        tag = "legacy",
         config = function()
             require("fidget").setup({})
         end,
@@ -226,6 +227,13 @@ packer.startup(function(use)
                 -- or leave it empty to use the default settings
                 -- refer to the configuration section below
             })
+        end,
+    })
+
+    use({
+        "luukvbaal/statuscol.nvim",
+        config = function()
+            require("config._statuscol")
         end,
     })
 end)
