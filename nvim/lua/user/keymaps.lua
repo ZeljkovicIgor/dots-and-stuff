@@ -20,6 +20,7 @@ keymap("n", "<leader>f", "<cmd>noa w<cr>", opts) -- save without formatting
 -- TELESCOPE
 keymap("n", "<leader>ff", telescope_builtin.find_files, opts) -- find files
 keymap("n", "<leader>fg", telescope_builtin.live_grep, opts) -- find in all files
+keymap("n", "<C-f>", telescope_builtin.current_buffer_fuzzy_find, opts) -- find in all files
 keymap("n", "<leader>fs", telescope_builtin.grep_string, opts) -- find help_tags
 keymap("n", "<leader>fb", telescope_builtin.buffers, opts) -- find buffers
 keymap("n", "<leader>fh", telescope_builtin.help_tags, opts) -- find help_tags

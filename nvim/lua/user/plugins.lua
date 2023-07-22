@@ -99,7 +99,7 @@ packer.startup(function(use)
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
     use({
         "nvim-telescope/telescope.nvim",
-        tag = "0.1.0",
+        branch = "0.1.x",
         config = function()
             require("config._telescope")
         end,
