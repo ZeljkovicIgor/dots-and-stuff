@@ -198,8 +198,8 @@ packer.startup(function(use)
     })
 
     use({
-        "glepnir/lspsaga.nvim",
-        branch = "main",
+        "nvimdev/lspsaga.nvim",
+        after = "nvim-lspconfig",
         config = function()
             require("config._saga")
         end,

@@ -31,7 +31,7 @@ keymap("n", "<leader>fD", telescope_builtin.diagnostics, opts) -- find all diagn
 keymap("n", "<leader>ss", telescope.extensions["session-lens"].search_session, opts) -- search sessions
 
 -- LSPSAGA
-keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
+keymap("n", "gh", "<cmd>Lspsaga finder<CR>")
 keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
 keymap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>")
 keymap("n", "<leader>rng", "<cmd>Lspsaga rename ++project<CR>")
