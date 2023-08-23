@@ -32,8 +32,6 @@ null_ls.setup({
         formatting.prettier.with({
             filetypes = { "html", "css" },
             extra_args = {
-                "--tab-width",
-                4,
                 "--html-whitespace-sensitivity",
                 "ignore",
             },

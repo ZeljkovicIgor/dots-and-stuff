@@ -1,5 +1,8 @@
 local config = require("lspconfig")
 local icons = require("user.icons")
+local constants = require("user.constants")
+local ok, user_settings = pcall(require, "user.settings")
+
 require("lspconfig.ui.windows").default_options.border = "single"
 
 vim.fn.sign_define("DiagnosticSignError", { text = icons.diagnostics.Error, texthl = "DiagnosticSignError" })
@@ -42,6 +45,16 @@ local on_attach_with_format = function(current_client, bufnr)
     end
 end
 
+local function get_js_on_attach()
+    if ok then
+        if user_settings.js_formatter == constants.JS_FORMATTERS.TSSERVER then
+            return on_attach_with_format
+        end
+    end
+
+    return on_attach
+end
+
 config.intelephense.setup({
     capabilities = capabilities,
     on_attach = on_attach,
@@ -78,7 +91,7 @@ config.emmet_language_server.setup({
 
 config.tsserver.setup({
     capabilities = capabilities,
-    on_attach = on_attach_with_format,
+    on_attach = get_js_on_attach(),
     settings = {
         javascript = {
             format = {
@@ -92,6 +105,15 @@ config.tsserver.setup({
             completeFunctionCalls = true,
         },
     },
+})
+
+config.eslint.setup({
+    on_attach = function(client, bufnr)
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            command = "EslintFixAll",
+        })
+    end,
 })
 
 config.jsonls.setup({

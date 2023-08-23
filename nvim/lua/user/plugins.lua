@@ -92,6 +92,9 @@ packer.startup(function(use)
             local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
             ts_update()
         end,
+        requires = {
+            "JoosepAlviste/nvim-ts-context-commentstring",
+        },
     })
     use("nvim-treesitter/nvim-treesitter-textobjects")
 
@@ -122,7 +125,7 @@ packer.startup(function(use)
     use({
         "numToStr/Comment.nvim",
         config = function()
-            require("Comment").setup()
+            require("config._comment")
         end,
     })
 

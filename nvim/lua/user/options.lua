@@ -26,4 +26,4 @@ vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- polyglot settings
-vim.g["polyglot_disabled"] = { "autoindent" }
+-- vim.g["polyglot_disabled"] = { "autoindent" }
