@@ -11,3 +11,5 @@ settings.lua
 kitty.conf.bak
 current-theme.conf
 *.conf.bak
+
+./nvim/lazy-lock.json
