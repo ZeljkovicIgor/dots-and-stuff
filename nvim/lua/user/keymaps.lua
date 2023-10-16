@@ -32,6 +32,17 @@ keymap("n", "<leader>ss", telescope.extensions["session-lens"].search_session, o
 
 keymap("n", "<leader>ft", "<cmd>TodoTelescope<CR>", opts)
 
+-- TROUBLE
+keymap("n", "<leader>xx", function()
+    require("trouble").toggle()
+end)
+keymap("n", "<leader>xw", function()
+    require("trouble").toggle("workspace_diagnostics")
+end)
+keymap("n", "<leader>xd", function()
+    require("trouble").toggle("document_diagnostics")
+end)
+
 -- LSPSAGA
 keymap("n", "gh", "<cmd>Lspsaga finder<CR>")
 keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
