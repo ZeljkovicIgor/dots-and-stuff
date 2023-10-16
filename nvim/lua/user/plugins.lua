@@ -36,6 +36,10 @@ return {
         config = function()
             require("config._luasnip")
         end,
+        dependencies = {
+            "rafamadriz/friendly-snippets",
+            "saadparwaiz1/cmp_luasnip",
+        },
     },
     "saadparwaiz1/cmp_luasnip",
     "rafamadriz/friendly-snippets",
@@ -168,13 +172,6 @@ return {
     },
 
     "dstein64/vim-startuptime",
-
-    {
-        "nathom/filetype.nvim",
-        config = function()
-            require("filetype").setup({})
-        end,
-    },
 
     {
         "JManch/sunset.nvim",

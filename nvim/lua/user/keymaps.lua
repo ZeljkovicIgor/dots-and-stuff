@@ -30,6 +30,8 @@ end, opts) -- find all diagnostic data in whole workspace
 keymap("n", "<leader>fD", telescope_builtin.diagnostics, opts) -- find all diagnostic data in whole workspace
 keymap("n", "<leader>ss", telescope.extensions["session-lens"].search_session, opts) -- search sessions
 
+keymap("n", "<leader>ft", "<cmd>TodoTelescope<CR>", opts)
+
 -- LSPSAGA
 keymap("n", "gh", "<cmd>Lspsaga finder<CR>")
 keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
