@@ -30,7 +30,7 @@ null_ls.setup({
             },
         }),
         formatting.prettier.with({
-            filetypes = { "html", "css" },
+            filetypes = { "html", "css", "json" },
             extra_args = {
                 "--html-whitespace-sensitivity",
                 "ignore",

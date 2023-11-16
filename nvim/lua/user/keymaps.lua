@@ -12,6 +12,7 @@ local telescope = require("telescope")
 keymap("n", "<leader><space>", "<cmd>noh<cr>", opts) -- remove highlight from search pattern
 keymap("i", "jj", "<ESC>", opts) -- exit insert mode
 keymap("n", "gf", "<cmd>edit <cfile><cr>", opts) -- open file on path (WIP)
+keymap("n", "<leader>q", ":bp<bar>sp<bar>bn<bar>bd<CR>", opts) -- close buffer without closing window
 
 keymap("n", "<C-b>", "<cmd>NvimTreeFindFileToggle<cr>", opts) -- toggle NvimTree
 
@@ -30,6 +31,7 @@ end, opts) -- find all diagnostic data in whole workspace
 keymap("n", "<leader>fD", telescope_builtin.diagnostics, opts) -- find all diagnostic data in whole workspace
 keymap("n", "<leader>ss", telescope.extensions["session-lens"].search_session, opts) -- search sessions
 
+-- TODO COMMENTS
 keymap("n", "<leader>ft", "<cmd>TodoTelescope<CR>", opts)
 
 -- TROUBLE
@@ -41,6 +43,12 @@ keymap("n", "<leader>xw", function()
 end)
 keymap("n", "<leader>xd", function()
     require("trouble").toggle("document_diagnostics")
+end)
+keymap("n", "x]", function()
+    require("trouble").next({ skip_groups = true, jump = true })
+end)
+keymap("n", "x[", function()
+    require("trouble").previous({ skip_groups = true, jump = true })
 end)
 
 -- LSPSAGA
