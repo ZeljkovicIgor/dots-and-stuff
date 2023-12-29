@@ -67,9 +67,9 @@ return {
         config = function()
             require("config.treesitter")
         end,
-        dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
     },
     "nvim-treesitter/nvim-treesitter-textobjects",
+    "JoosepAlviste/nvim-ts-context-commentstring",
 
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     {

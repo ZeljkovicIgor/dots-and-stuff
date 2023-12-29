@@ -57,10 +57,6 @@ treesitter.setup({
         enable = true,
         -- disable = { "html" },
     },
-
-    context_commentstring = {
-        enable = true,
-    },
 })
 
 vim.treesitter.query.set("javascript", "injections", "")

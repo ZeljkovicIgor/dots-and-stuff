@@ -25,5 +25,8 @@ opt.updatetime = 250
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- speed up loading for nvim-ts-context-commentstring
+vim.g.skip_ts_context_commentstring_module = true
+
 -- polyglot settings
 -- vim.g["polyglot_disabled"] = { "autoindent" }
