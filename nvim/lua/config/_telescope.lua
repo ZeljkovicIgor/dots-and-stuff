@@ -1,5 +1,5 @@
 local telescope = require("telescope")
-local trouble = require("trouble.providers.telescope")
+local trouble = require("trouble.sources.telescope")
 
 telescope.setup({
     defaults = {
@@ -7,8 +7,8 @@ telescope.setup({
         file_ignore_patterns = { ".sql", "vendor", ".git" },
         path_display = { "truncate" },
         mappings = {
-            i = { ["<leader>t"] = trouble.smart_open_with_trouble },
-            n = { ["<leader>t"] = trouble.smart_open_with_trouble },
+            i = { ["<leader>t"] = trouble.open },
+            n = { ["<leader>t"] = trouble.open },
         },
     },
     pickers = {
