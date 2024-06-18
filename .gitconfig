@@ -1,0 +1,16 @@
+[diff]
+  tool = nvimdiff
+[difftool]
+  prompt = false
+  trustExitCode = true
+[merge]
+  tool = nvimdiff
+[mergetool]
+  prompt = false
+  keepBackup = false
+[alias]
+  d = difftool
+  m = mergetool
+[user]
+  email = 
+  name = Igor Zeljkovic
