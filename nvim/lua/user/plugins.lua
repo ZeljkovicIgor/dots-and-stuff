@@ -1,4 +1,5 @@
 return {
+    "tpope/vim-fugitive",
     "lewis6991/impatient.nvim",
 
     "neovim/nvim-lspconfig", -- Configurations for Nvim LSP
@@ -156,8 +157,9 @@ return {
 
     {
         "j-hui/fidget.nvim",
-        tag = "legacy",
-        event = "LspAttach",
+        opts = {
+            -- options
+        },
     },
 
     {
@@ -212,8 +214,6 @@ return {
     {
         "adalessa/laravel.nvim",
         dependencies = {
-            "nvim-telescope/telescope.nvim",
-            "tpope/vim-dotenv",
             "MunifTanjim/nui.nvim",
         },
         cmd = { "Sail", "Artisan", "Composer", "Npm", "Yarn", "Laravel" },
@@ -221,21 +221,21 @@ return {
             { "<leader>la", ":Laravel artisan<cr>" },
             { "<leader>lr", ":Laravel routes<cr>" },
             { "<leader>lm", ":Laravel related<cr>" },
-            {
-                "<leader>lt",
-                function()
-                    require("laravel.tinker").send_to_tinker()
-                end,
-                mode = "v",
-                desc = "Laravel Application Routes",
-            },
         },
         event = { "VeryLazy" },
         config = function()
             require("laravel").setup({
                 lsp_server = "intelephense",
+                features = {
+                    null_ls = {
+                        enable = false,
+                    },
+                    route_info = {
+                        enable = true,
+                        position = "right",
+                    },
+                },
             })
-            require("telescope").load_extension("laravel")
         end,
     },
 }
