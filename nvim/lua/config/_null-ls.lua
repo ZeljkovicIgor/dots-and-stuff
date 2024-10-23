@@ -15,14 +15,7 @@ null_ls.setup({
         formatting.stylua.with({
             extra_args = { "--indent-type", "Spaces" },
         }),
-        formatting.phpcsfixer.with({
-            extra_args = {
-                "--rules",
-                "@PSR12,-elseif,array_indentation",
-                "--cache-file",
-                vim.fn.expand("~/.config/nvim/.php-cs-fixer.cache"),
-            },
-        }),
+        null_ls.builtins.formatting.pint,
         formatting.blade_formatter.with({
             extra_args = {
                 "--wrap",

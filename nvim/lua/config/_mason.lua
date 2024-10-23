@@ -40,7 +40,7 @@ mason_null_ls.setup({
     -- list of formatters & linters for mason to install
     ensure_installed = {
         "stylua",
-        "phpcsfixer",
+        "pint",
         "blade_formatter",
     },
     -- auto-install configured formatters & linters (with null-ls)

@@ -41,7 +41,7 @@ startup.setup({
         title = "Basic Commands",
         margin = 5,
         content = {
-            { contentNames.sessions, "SearchSession", "<leader>ss" },
+            { contentNames.sessions, "SessionSearch", "<leader>ss" },
             { contentNames.findFiles, "Telescope find_files", "<leader>ff" },
             { contentNames.findWord, "Telescope live_grep", "<leader>lg" },
             { contentNames.recentFiles, "Telescope oldfiles", "<leader>of" },

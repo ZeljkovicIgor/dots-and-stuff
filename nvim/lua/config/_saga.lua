@@ -1,20 +1,20 @@
 local saga = require("lspsaga")
-local colors = require("tokyonight.colors").default
+-- local colors = require("tokyonight.colors").default
 local icons = require("user.icons")
 
-local saga_colors = {
-    normal_bg = colors.bg,
-    red = colors.red,
-    magenta = colors.magenta,
-    orange = colors.orange,
-    yellow = colors.yellow,
-    green = colors.green,
-    cyan = colors.cyan,
-    blue = colors.blue,
-    purple = colors.purple,
-    white = colors.white,
-    black = colors.black,
-}
+-- local saga_colors = {
+--     normal_bg = colors.bg,
+--     red = colors.red,
+--     magenta = colors.magenta,
+--     orange = colors.orange,
+--     yellow = colors.yellow,
+--     green = colors.green,
+--     cyan = colors.cyan,
+--     blue = colors.blue,
+--     purple = colors.purple,
+--     white = colors.white,
+--     black = colors.black,
+-- }
 
 saga.setup({
     finder = {
