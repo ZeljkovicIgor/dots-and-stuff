@@ -27,7 +27,7 @@ mason_lspconfig.setup({
     -- list of servers for mason to install
     ensure_installed = {
         "html",
-        "tsserver",
+        "ts_ls",
         "intelephense",
         "emmet_language_server",
         "lua_ls",

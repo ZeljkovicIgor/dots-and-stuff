@@ -89,7 +89,7 @@ config.emmet_language_server.setup({
     },
 })
 
-config.tsserver.setup({
+config.ts_ls.setup({
     capabilities = capabilities,
     on_attach = get_js_on_attach(),
     settings = {

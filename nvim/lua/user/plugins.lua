@@ -213,6 +213,7 @@ return {
 
     {
         "adalessa/laravel.nvim",
+        version = "v2.2.1",
         dependencies = {
             "MunifTanjim/nui.nvim",
         },
