@@ -5,12 +5,15 @@ local ok, user_settings = pcall(require, "user.settings")
 
 require("lspconfig.ui.windows").default_options.border = "single"
 
-vim.fn.sign_define("DiagnosticSignError", { text = icons.diagnostics.Error, texthl = "DiagnosticSignError" })
-vim.fn.sign_define("DiagnosticSignWarn", { text = icons.diagnostics.Warning, texthl = "DiagnosticSignWarn" })
-vim.fn.sign_define("DiagnosticSignInfo", { text = icons.diagnostics.Information, texthl = "DiagnosticSignInfo" })
-vim.fn.sign_define("DiagnosticSignHint", { text = icons.diagnostics.Hint, texthl = "DiagnosticSignHint" })
-
 vim.diagnostic.config({
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+            [vim.diagnostic.severity.WARN] = icons.diagnostics.Warning,
+            [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+            [vim.diagnostic.severity.INFO] = icons.diagnostics.Information,
+        },
+    },
     virtual_text = false,
     severity_sort = true,
 })
@@ -28,7 +31,7 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local on_attach_with_format = function(current_client, bufnr)
     on_attach(current_client, bufnr)
 
-    if current_client.supports_method("textDocument/formatting") then
+    if current_client:supports_method("textDocument/formatting") then
         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
         vim.api.nvim_create_autocmd("BufWritePre", {
             group = augroup,
@@ -136,6 +139,11 @@ config.lua_ls.setup({
             diagnostics = {
                 -- Get the language server to recognize the `vim` global
                 globals = { "vim" },
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = false, -- avoid annoying prompts
             },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {
