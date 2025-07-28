@@ -1,6 +1,5 @@
 return {
     "tpope/vim-fugitive",
-    "lewis6991/impatient.nvim",
 
     "neovim/nvim-lspconfig", -- Configurations for Nvim LSP
 
@@ -37,6 +36,7 @@ return {
         config = function()
             require("config._luasnip")
         end,
+        build = "make install_jsregexp",
         dependencies = {
             "rafamadriz/friendly-snippets",
             "saadparwaiz1/cmp_luasnip",
@@ -116,7 +116,7 @@ return {
                     previewer = false,
                 },
                 log_level = "error",
-                auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+                suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
             })
         end,
     },
@@ -145,13 +145,13 @@ return {
     "williamboman/mason-lspconfig.nvim", -- bridges gap b/w mason & lspconfig
 
     -- formatting & linting
-    {
-        "jose-elias-alvarez/null-ls.nvim",
-        config = function()
-            require("config._null-ls")
-        end,
-    }, -- configure formatters & linters
-    "jayp0521/mason-null-ls.nvim", -- bridges gap b/w mason & null-ls
+   {
+       "nvimtools/none-ls.nvim",
+       config = function()
+           require("config._none-ls")
+       end,
+   },
+   "jayp0521/mason-null-ls.nvim", -- bridges gap b/w mason & null-ls
 
     "sheerun/vim-polyglot",
 
